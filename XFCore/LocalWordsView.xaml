@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="XFCore.LocalWordsView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <BoxView Color="{StaticResource MainColor}"/>
+        <Entry Placeholder="საძიებო სიტყვა" VerticalOptions="Center" WidthRequest="270" HorizontalOptions="Start" Text="{Binding LocalSearchText}" Margin="46,0,0,0"/>
+        <Button HorizontalOptions="End" Text="+" Clicked="Handle_Clicked" WidthRequest="40"/>
+        
+        <ListView ItemsSource="{Binding LocalWords}" Grid.Row="1" BackgroundColor="#e7e7e7" HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView BackgroundColor="#e7e7e7" Padding="0,5,0,5">
+                             <Grid RowSpacing="2" BackgroundColor="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Word}" LineBreakMode="WordWrap" FontAttributes="Bold" HorizontalOptions="Fill"/>
+                                <Label Text="{Binding Grammars}" Grid.Row="1"/>
+                                <Label Text="{Binding Definition}" LineBreakMode="WordWrap" HorizontalOptions="Fill" Grid.Row="2"/>
+                                <Button Text="წაშლა" Command="{Binding RemoveCommand}" CommandParameter="{Binding Id}" Grid.Row="3" HorizontalOptions="End"/>
+                            </Grid>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentView>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="XFCore.WordsPage">
+	<ContentPage.Content>
+        <Grid x:Name="rootGrid">
+            
+
+
+            
+            <Grid x:Name="popupRootView">
+                <BoxView Color="#55000000" x:Name="popupBackView"/>
+                <Frame InputTransparent="false" WidthRequest="400" HeightRequest="300" Margin="40" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" AnchorX="0.5" AnchorY="0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                    
+                        <Entry Placeholder="სიტყვა" Text="{Binding WordToAdd}"/>
+                        <Editor Grid.Row="1" VerticalOptions="Fill" Text="{Binding WordDescriotionToAdd}"/>
+                        <Button Text="დამატება" Grid.Row="2" Command="{Binding AddNewWordCommand}" TextColor="White" BackgroundColor="{StaticResource MainColor}"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
+	</ContentPage.Content>
+</ContentPage>

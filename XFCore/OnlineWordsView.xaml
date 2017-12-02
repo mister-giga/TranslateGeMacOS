@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="XFCore.OnlineWordsView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <BoxView Color="{StaticResource MainColor}"/>
+        <ActivityIndicator IsVisible="{Binding IsLoading}" Color="White" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" IsRunning="true" HorizontalOptions="Start" Margin="10,0,0,0"/>
+        <Entry Placeholder="საძიებო სიტყვა" VerticalOptions="Center" WidthRequest="270" HorizontalOptions="Start" Text="{Binding OnlineSearchText}" Margin="46,0,0,0"/>
+        <Button HorizontalOptions="End" Text="+" Clicked="Handle_Clicked" WidthRequest="40"/>
+        
+        <ListView ItemsSource="{Binding OnlineWords}" Grid.Row="1" BackgroundColor="#e7e7e7" HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView BackgroundColor="#e7e7e7" Padding="0,5,0,5">
+                             <Grid RowSpacing="2" BackgroundColor="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Word}" LineBreakMode="WordWrap" FontAttributes="Bold" HorizontalOptions="Fill"/>
+                                <Label Text="{Binding Grammars}" Grid.Row="1"/>
+                                <Label Text="{Binding Definition}" LineBreakMode="WordWrap" HorizontalOptions="Fill" Grid.Row="2"/>
+                                <Button Text="დამახსოვრება" Command="{Binding SaveCommand}" CommandParameter="{Binding .}" IsVisible="{Binding IsSavedLocally}" Grid.Row="3" HorizontalOptions="End"/>
+                            </Grid>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentView>
